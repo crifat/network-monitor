@@ -1,0 +1,19 @@
+{
+  "name": "network-monitor",
+  "version": "1.0.0",
+  "description": "Monitor Internet Connectivity and generate report",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nigh7m4r3/network-monitor.git"
+  },
+  "author": "Rifatul Islam Chayon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nigh7m4r3/network-monitor/issues"
+  },
+  "homepage": "https://github.com/nigh7m4r3/network-monitor#readme"
+}
