@@ -9,33 +9,15 @@ export const pingHost = () => {
 }
 
 const handlePingResponse = (res) => {
-    // alive = res.alive;
-    const down = res.alive;
+    const down = !res.alive;
+    const time = new Date();
     if (down) {
-        console.log('DOWN!!!' + currentTime());
+        console.log('DOWN!!!', time);
         const data = {
-            time: currentTime(),
-            down: 1
+            time: time.toISOString(),
+            down: 1,
+            end: new Date(time.getTime() + 1000).toISOString()
         };
         writeToFile(data);
     }
-}
-
-const currentTime = () => {
-    const currentdate = new Date();
-    // const datetime = addZero(currentdate.getDate()) + "-"
-    //     + addZero((currentdate.getMonth() + 1)) + "-"
-    //     + currentdate.getFullYear() + " "
-    //     + addZero(currentdate.getHours()) + ":"
-    //     + addZero(currentdate.getMinutes()) + ":"
-    //     + addZero(currentdate.getSeconds());
-
-    return currentdate.toISOString();
-}
-
-const addZero = (i) => {
-    if (i < 10) {
-        i = "0" + i;
-    }
-    return i;
 }
