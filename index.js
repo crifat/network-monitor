@@ -1,5 +1,7 @@
-function startMonitoring() {
-    console.log('monitor started');
-}
+import { pingHost } from './pinger.js';
+import { config } from './config.js';
 
-startMonitoring();
+(function startMonitoring() {
+    console.log('monitor started');
+    setInterval(pingHost, config.interval);
+})();

@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Monitor Internet Connectivity and generate report",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "convert": "node csv-to-json.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/nigh7m4r3/network-monitor/issues"
   },
-  "homepage": "https://github.com/nigh7m4r3/network-monitor#readme"
+  "homepage": "https://github.com/nigh7m4r3/network-monitor#readme",
+  "dependencies": {
+    "convert-csv-to-json": "^1.3.0",
+    "fast-csv": "^4.3.6",
+    "ping": "^0.4.1"
+  }
 }
