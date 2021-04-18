@@ -22,44 +22,68 @@
         }
     </style>
     <script>
-        function readFile() {
-            var file = document.getElementById("fileForUpload").files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.readAsText(file, "UTF-8");
-                reader.onload = function (evt) {
-                    console.log(evt.target.result);
-                    var container = document.getElementById("visualization");
-                    var items = JSON.parse(evt.target.result);
+        // function readFile() {
+        //     var file = document.getElementById("fileForUpload").files[0];
+        //     if (file) {
+        //         var reader = new FileReader();
+        //         reader.readAsText(file, "UTF-8");
+        //         reader.onload = function (evt) {
+        //             console.log(evt.target.result);
+        //             var container = document.getElementById("visualization");
+        //             var items = JSON.parse(evt.target.result);
 
-                    var dataset = new vis.DataSet(items);
-                    console.log(dataset);
-                    var options = {
-                        style: "bar",
-                        barChart: { width: 50, align: "center" }, // align: left, center, right
-                        drawPoints: false,
-                        dataAxis: {
-                            icons: true,
-                        },
-                        orientation: "top",
-                        start: "2021-04-18",
-                        end: new Date(),
-                    };
-                    var graph2d = new vis.Graph2d(container, items, options);
-                }
-            }
-        }
+        //             var dataset = new vis.DataSet(items);
+        //             console.log(dataset);
+        //             var options = {
+        //                 style: "bar",
+        //                 barChart: { width: 50, align: "center" }, // align: left, center, right
+        //                 drawPoints: false,
+        //                 dataAxis: {
+        //                     icons: true,
+        //                 },
+        //                 orientation: "top",
+        //                 start: "2021-04-18",
+        //                 end: new Date(),
+        //             };
+        //             var graph2d = new vis.Graph2d(container, items, options);
+        //         }
+        //     }
+        // }
     </script>
 </head>
 
 <body>
     <h2>Network Monitor Chart</h2>
-    <input type="file" id="fileForUpload" accept=".json">
-    <button onClick="readFile()">Load Chart</button>
-    <br />
     <hr>
 
     <div id="visualization"></div>
 </body>
+
+<script>
+    setTimeout(function () {
+        window.location.reload(1);
+    }, 60 * 1000);
+    fetch('http://localhost:3003').then(res => {
+        res.json().then(data => {
+            var container = document.getElementById("visualization");
+            var items = data;
+
+            var dataset = new vis.DataSet(items);
+            var options = {
+                style: "bar",
+                barChart: { width: 50, align: "center" }, // align: left, center, right
+                drawPoints: false,
+                dataAxis: {
+                    icons: true,
+                },
+                orientation: "top",
+                // start: "2021-04-18",
+                start: new Date(new Date().getTime() - 1 * 60 * 60 * 1000),
+                end: new Date(new Date().getTime() + 60 * 1000),
+            };
+            var graph2d = new vis.Graph2d(container, items, options);
+        });
+    })
+</script>
 
 </html>
