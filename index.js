@@ -5,7 +5,7 @@ import { startServer } from './server.js';
 
 (function startMonitoring() {
     console.log('monitor started');
-    setInterval(pingHost, config.interval);
+    setInterval(pingHost, config.pingInterval);
     setInterval(generateJsonOutput, config.convertInterval);
     startServer();
 })();
